@@ -1,6 +1,12 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public interface IInteraction
+{
+    void PerformAction();
+}
 
 public class BallWithCharacterController : MonoBehaviour
 {
@@ -27,4 +33,21 @@ public class BallWithCharacterController : MonoBehaviour
         
         cc.Move(direction * speed * Time.deltaTime);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Player has collided with the object");
+
+        if(collision.gameObject.tag == "Door")
+        {
+            collision.gameObject.GetComponent<Door>();
+        }
+
+        public void OpenDoor()
+        {
+            Debug.Log("Open door");
+        }
+    }
+
+
 }
